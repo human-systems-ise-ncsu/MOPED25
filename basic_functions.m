@@ -26,6 +26,7 @@ fprintf("Number of frames: %d\n", max(frame_id));
 frame_time=pose_st{2};
 fprintf("Length of the task: %f s\n", max(frame_time));
 
+% summary
 % The third cell is the marker data struct
 marker_st=pose_st{3};
 marker_name=marker_st(:,1); % marker name
@@ -68,11 +69,46 @@ vis_pose_37(marker_xyz, nf);
 % Play all frames of current task
 vis_pose_37(marker_xyz);
 
+%% load marker .trc file of box
+% Demo file name: 'sub07_09_01_box_trc.mat'.
+sub_id=7; task_id=9; task_iid=1;
+% create file path
+box_file_dir=fullfile('\data\box_trc_mat', ['sub', num_to_2char(sub_id)]);
+box_file_name=[['sub', num_to_2char(sub_id)],'_',...
+   num_to_2char(task_id), '_',  num_to_2char(task_iid),...
+   '_box_trc.mat'];
+box_file_path=fullfile(box_file_dir, box_file_name);
+% load
+box_marker_st=load(box_file_path);
+box_marker_st=box_marker_st.box_xyz_all;
 
+% summary
+% The third cell is the marker data struct
+disp(box_marker_st{3}(:,1));
 
+box_marker_xyz=box_marker_st{3}(:,2); % xyz for each marker
 
+%% load shelf and chair.trc file of box
+% note that the shelf and chair were fixed
 
+% create file path
+chair_file_path='\data\virtual_trc\chair_virtual_trc.mat';
+shelf_file_path='\data\virtual_trc\shelf_virtual_trc.mat';
 
+% load
+chair_marker_st=load(chair_file_path);
+shelf_marker_st=load(shelf_file_path);
+
+chair_marker_st=chair_marker_st.chair_xyz_all;
+shelf_marker_st=shelf_marker_st.shelf_xyz_all;
+
+% summary
+% marker name
+disp(chair_marker_st(:,1));
+disp(shelf_marker_st(:,1));
+% marker xyz
+chair_marker_xyz=chair_marker_st(:,2);
+shelf_marker_xyz=shelf_marker_st(:,2);
 
 
 
