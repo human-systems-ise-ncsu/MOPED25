@@ -11,6 +11,4 @@
   2. Extract the data under folder '\data'. Note that the code used one sample from Sub07 for demo purpose.
   3. Run the the file 'basic_functions.m' block by block. 
 ## Data downloading (soon)
-* Marker data
-* Virtual marker data
-* Video data
+* The link is provided on our [MOPED25](https://www.ise.ncsu.edu/biomechanics/moped25/) webpage.
