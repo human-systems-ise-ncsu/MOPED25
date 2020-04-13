@@ -1,4 +1,4 @@
-function pose_st=get_one_task(sub_id, task_id, task_iid, file_dir)
+function [pose_st, if_exist]=get_one_task(sub_id, task_id, task_iid, file_dir)
 % sub_id: subject id (2-12)
 % task_id: task id (1-25)
 % task_iid: some tasks have a few repetition, and some have different 
@@ -16,8 +16,11 @@ file_name=[['sub', num_to_2char(sub_id)],'_',...
    '_trc.mat'];
 file_path=fullfile(file_dir, file_name);
 %% check file path
+if_exist=true;
 if ~exist(file_path)
-    warning
-else
+    warning([file_path, ' does not exist']);
+    if_exist=fa;
+    return;
+end
 %% return pose structure
 pose_st=load(file_path);

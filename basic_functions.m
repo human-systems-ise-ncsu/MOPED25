@@ -1,15 +1,19 @@
 %% To begin with
 % This file introduces all the functionalities. Each block  
 % introduces one function.
-
+%% Set current working path !!!
+cd path/to/current/mfile
+% add functions path
+addpath([pwd, '\funcs']);
 %% Load posture data of one task
 % I copied one file to current folder for demo purpose.
 % To access all data, you should download all using
 %    the link on my github page. 
 % Note that the 'file_dir' should be the directory of .mat file.
+
 close all; clear; clc;
 
-file_dir='\data\working_posture_trc_mat';
+file_dir='\data\working_posture_trc_mat'; % data directory
 
 % Demo file name: 'sub07_09_01_trc.mat'.
 sub_id=7; task_id=9; task_iid=1;
