@@ -10,6 +10,6 @@
   1. Download the data. (Marker data/Videos were stored as .mat/.avi)
   2. Extract the data under folder '\data'. Note that the code used one sample from Sub07 for demo purpose.
   3. Run the the file 'basic_functions.m' block by block. 
-  4. **important:** The video file is 30 Hz and the motion data is 60 Hz. Therefore, each video frame has two corresponding motion frames.
-## Data downloading (soon)
+  4. **Important:** The video file is 30 Hz and the motion data is 60 Hz. Therefore, each video frame has two corresponding motion frames.
+## Data downloading 
 * The link is provided on our [MOPED25](https://www.ise.ncsu.edu/biomechanics/moped25/) webpage.
