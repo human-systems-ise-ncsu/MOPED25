@@ -14,8 +14,12 @@
 ## GUI for easy access and visualization (New)
 * The GUI provides easy visualization of both marker data and video data. All code is intergrated in one script, so it has **zero** path and package independencies. (I can run it with MATLAB 2018b and 2019a. )
 * **Usage:** 
-  1. Open script 'interactive_plot.m' and run.
-  2. Click to load the marker file or video file.
-
+  1. Download data. Open script 'interactive_plot.m' and run.
+  2. Click to load the marker file or video file first. Note that you can either load marker data or video data. 
+  ![load_data](https://raw.githubusercontent.com/LLDavid/MOPED25/master/image/load.png)
+  **Do not change the name of the files**. The naming has to be strictly the same with the default.
+  ![load_file](https://raw.githubusercontent.com/LLDavid/MOPED25/master/image/load_file.PNG)
+  3. The following image shows some functions. Note that the marker data frequency is twice the video freqency (e.g., marker frame #4 matches to video frame #2).
+  ![functions](https://raw.githubusercontent.com/LLDavid/MOPED25/master/image/functions.png)
 ## Data downloading 
 * The link is provided on our [MOPED25](https://www.ise.ncsu.edu/biomechanics/moped25/) webpage.
