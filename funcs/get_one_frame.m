@@ -1,4 +1,4 @@
-function frame=get_one_frame(sub_id, task_id, task_iid, frame_id, ...
+function video_struct=get_one_frame(sub_id, task_id, task_iid, frame_id, ...
     file_dir)
 % sub_id: subject id (2-12)
 % task_id: task id (1-25)
@@ -25,12 +25,16 @@ end
 %% get that frame
 v = VideoReader(file_path);
 frame_cnt=1;
+ video_struct.total_frames=v.FrameRate*v.Duration;
+ video_struct.duration=v.Duration;
+ video_struct.fps=v.FrameRate;
 while hasFrame(v)&&frame_cnt<=frame_id
-    frame = readFrame(v);
+    video_struct.frame = readFrame(v);
     frame_cnt=frame_cnt+1;
 end
+
 if frame_cnt<frame_id
     warning('Frame does not exist');
-    frame=NaN;
+    video_struct=NaN;
 end
 

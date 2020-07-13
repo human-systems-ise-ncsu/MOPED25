@@ -16,7 +16,6 @@ file_name=[['sub', num_to_2char(sub_id)],'_',...
    '_trc.mat'];
 file_path=fullfile(file_dir, file_name);
 %% check file path
-if_exist=true;
 if ~exist(file_path)
     warning([file_path, ' does not exist']);
     pose_st.xyz_all={};

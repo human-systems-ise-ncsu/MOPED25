@@ -54,11 +54,11 @@ sub_id=7; task_id=9; task_iid=1;
 
 % get the frame
 frame_id=3;
-frame=get_one_frame(sub_id, task_id, task_iid, frame_id, ...
+video_struct=get_one_frame(sub_id, task_id, task_iid, frame_id, ...
     file_dir);
 
 % show the frame
-imshow(frame);shg;
+imshow(video_struct.frame);shg;
 
 %% visualize one pose
 % Now, after running the previous two blocks, you should have
