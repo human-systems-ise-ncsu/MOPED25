@@ -11,7 +11,7 @@
   2. Extract the data under folder '\data'. Note that the code used one sample from Sub07 for demo purpose.
   3. Run the the file 'basic_functions.m' block by block. 
   4. **Important:** The video file is 30 Hz and the motion data is 60 Hz. Therefore, each video frame has two corresponding motion frames.
-## GUI for easy access and visualization (New)
+## GUI for easy access (New)
 * The GUI provides easy visualization of both marker data and video data. All code is intergrated in one script, so it has **zero** path and package independencies. (I can run it with MATLAB 2018b and 2019a. )
 * **Usage:** 
   1. Download data. Open script 'interactive_plot.m' and run.
