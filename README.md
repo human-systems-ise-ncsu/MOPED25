@@ -17,9 +17,9 @@
   1. Download data. Open script 'interactive_plot.m' and run.
   2. Click to load the marker file or video file first. Note that you can either load marker data or video data. 
   ![load_data](https://raw.githubusercontent.com/LLDavid/MOPED25/master/image/load_file.PNG)
-  **Do not change the name of the files**. The naming has to be strictly the same with the default.
+  3. **Do not change the name of the files**. The naming has to be strictly the same with the default.
   ![load_file](https://raw.githubusercontent.com/LLDavid/MOPED25/master/image/load.png)
-  3. The following image shows some functions. Note that the marker data frequency is twice the video freqency (e.g., marker frame #4 matches to video frame #2).
+  4. The following image shows some functions. Note that the marker data frequency is twice the video freqency (e.g., marker frame #4 matches to video frame #2).
   ![functions](https://raw.githubusercontent.com/LLDavid/MOPED25/master/image/functions.png)
 ## Data downloading 
 * The link is provided on our [MOPED25](https://www.ise.ncsu.edu/biomechanics/moped25/) webpage.
