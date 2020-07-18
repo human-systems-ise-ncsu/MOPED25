@@ -7,8 +7,8 @@ mpage.marker_axes.Position=mpage.marker_axes.Position+[0,0, -0.1,0];
 mpage.image_axes.Position=mpage.image_axes.Position+[-0.1,0, 0.1,0];
 annotation('line',[0.4 0.4],[0 1], 'LineWidth',2);
 annotation('textbox', [0.001, 0.0005, 0.1, 0.1], 'string', 'Marker',...
-        'FitBoxToText','on', 'FontSize', 18, 'Color', 'g', ...
-        'EdgeColor', 'None');
+    'FitBoxToText','on', 'FontSize', 18, 'Color', 'g', ...
+    'EdgeColor', 'None');
 annotation('textbox', [0.93, 0.0005, 0.1, 0.1], 'string', 'Video',...
     'FitBoxToText','on', 'FontSize', 18, 'Color', 'r', ...
     'EdgeColor', 'None');
@@ -18,6 +18,8 @@ global marker_fid;
 global video_st;
 global frame_id;
 global video_current_time;
+global marker_info_annot_handle;
+global video_info_annot_handle;
 %% Marker loading button
 mpage.marker_bt1 = uicontrol('style','push',...
     'units','normalized',...
@@ -110,6 +112,7 @@ mpage.video_bt6 = uicontrol('style','text',...
 function marker_file_select(~,~, mpage)
 global marker_fid;
 global pose_st;
+global marker_info_annot_handle;
 [file_name,file_path] = uigetfile('*.mat');
 pose_st=load(fullfile(file_path, file_name));
 if isempty(pose_st) % if file loaded
@@ -127,11 +130,14 @@ else
     mf_id_str=['Subject ID:', num2str(sub_id),...
         '  Task ID: ', num2str(task_id),...
         '  Trial:', num2str(task_iid)];
-    annotation('textbox', [0.12, 0.025, 0.3, 0.040], 'string', mf_id_str,...
+    % clear annot info handle 
+    delete(marker_info_annot_handle);
+    marker_info_annot_handle=annotation('textbox', [0.12, 0.025, 0.3, 0.040], 'string', mf_id_str,...
         'FitBoxToText','on', 'FontSize', 13);
     marker_fid=1; % set to 1 when load new marker file
     marker_st=pose_st.xyz_all{3};
     marker_xyz=marker_st(:,2);
+    cla(mpage.marker_axes);
     vis_pose_37_gui(marker_xyz, marker_fid, mpage.marker_axes); % vis the 1st frame by default
 end
 end
@@ -165,7 +171,7 @@ vis_pose_37_gui(marker_xyz, marker_fid, mpage.marker_axes); % vis the 1st frame 
 end
 
 function reset_view_angle(~,~, mpage)
-    view(mpage.marker_axes,[0 0 90]);
+view(mpage.marker_axes,[0 0 90]);
 end
 
 function go_to_entered_marker_frame(~,~, mpage)
@@ -173,7 +179,7 @@ global marker_fid;
 global pose_st;
 
 entered_id=int16(str2num(get(mpage.marker_bt5, 'String')));
-if isempty(entered_id) % check input 
+if isempty(entered_id) % check input
     warndlg("Please enter integer !");return;
 end
 marker_st=pose_st.xyz_all{3};
@@ -183,7 +189,7 @@ if entered_id>length(marker_xyz{2}) || entered_id<1 % check range
 end
 marker_fid=entered_id;
 cla(mpage.marker_axes);% clear previous axes
-vis_pose_37_gui(marker_xyz, marker_fid, mpage.marker_axes); 
+vis_pose_37_gui(marker_xyz, marker_fid, mpage.marker_axes);
 end
 
 
@@ -191,6 +197,7 @@ end
 function video_file_select(~,~, mpage)
 global video_st;
 global frame_id;
+global video_info_annot_handle;
 [file_name,file_path] = uigetfile('*.avi'); % load video
 % pick up IDs from file name
 sub_id=str2num(file_name(4:5));
@@ -214,7 +221,8 @@ imshow(frame, 'Parent', mpage.image_axes); % display image
 mf_id_str=['Subject ID:', num2str(sub_id),...% add text box for id
     '  Task ID: ', num2str(task_id),...
     '  Trial:', num2str(task_iid)];
-annotation('textbox', [0.58, 0.1, 0.3, 0.040], 'string', mf_id_str,...
+delete(video_info_annot_handle);
+video_info_annot_handle=annotation('textbox', [0.58, 0.1, 0.3, 0.040], 'string', mf_id_str,...
     'FitBoxToText','on', 'FontSize', 13);
 title(['Video Frame #',num2str(frame_id)],'Parent', mpage.image_axes); % add title
 end
@@ -263,7 +271,7 @@ function go_to_entered_video_frame(~,~, mpage)
 global video_st;
 global frame_id;
 entered_id=int16(str2num(get(mpage.video_bt4, 'String')));
-if isempty(entered_id) % check input 
+if isempty(entered_id) % check input
     warndlg("Please enter integer !");return;
 end
 % make sure frame id in range
