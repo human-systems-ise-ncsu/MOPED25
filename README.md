@@ -6,6 +6,10 @@
 * For a more detailed description of the experiment and the dataset, please refer to our paper (soon).
 ## Code
 * I provided very basic loading and visualizing MATLAB (2019a) code. I haven't tested it in other machines (later), but it should work. No extra packages are needed to run the code. I will keep updating, and add python version later.
+* **GITHUB use:**
+  1. For windows user, click 'Code' in green button and select 'Download Zip'. The local path doesn't matter.
+  2. Open the zip file and unzip it.
+  3. The files in the zip file are exactly the same with the files shown in the Github page. Follow the following instructions for the use of code.
 * **Usage:** 
   1. Download the data. (Marker data/Videos were stored as .mat/.avi)
   2. Extract the data under folder '\data'. Note that the code used one sample from Sub07 for demo purpose.
