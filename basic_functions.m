@@ -2,23 +2,25 @@
 % This file introduces all the functionalities. Each block  
 % introduces one function.
 %% Set current working path !!!
-cd path/to/current/mfile
+cd path\of\the\current\mfile
 % add functions path
-addpath([pwd, '\funcs']);
+addpath(fullfile(pwd, 'funcs'));
 %% Load posture data of one task
 % I copied one file to current folder for demo purpose.
 % To access all data, you should download all using
 %    the link on my github page. 
 % Note that the 'file_dir' should be the directory of .mat file.
 
-close all; clear; clc;
+close all;  clc;
 
-file_dir='\data\working_posture_trc_mat'; % data directory
+% Choose marker data directory
+file_dir=uigetdir(pwd, 'Choose Where You Dnowloaded the Marker Data (e.g., xx\working_posture_trc_mat\). ');
+% file_dir='\data\working_posture_trc_mat'; % data directory
 
 % Demo file name: 'sub07_09_01_trc.mat'.
-sub_id=7; task_id=9; task_iid=1;
+sub_id=7; task_id=9; task_iid=1; % task_iid is the trial number
 
-% get posture data from one task
+% get all posture data from one task
 pose_st=get_one_task(sub_id, task_id, task_iid, file_dir);
 pose_st=pose_st.xyz_all;
 
@@ -35,9 +37,11 @@ fprintf("Length of the task: %f s\n", max(frame_time));
 marker_st=pose_st{3};
 marker_name=marker_st(:,1); % marker name
 % disp(marker_name');
-marker_xyz=marker_st(:,2); % xyz for each marker
+marker_xyz=marker_st(:,2); % xyz data for each marker 
+% coloumn: 3 (xyz) * 37 (number of markers)
+% row: number of frames
 
-% To get marker data of forehead marker (FH)
+% E.g., to get marker data of forehead marker (FH)
 FH_xyz=marker_xyz{1};
 
 %% Load one frame from video 
@@ -47,7 +51,9 @@ FH_xyz=marker_xyz{1};
 %    the link on my github page. 
 % Note that the 'file_dir' should be the directory of .avi file.
 
-file_dir='\data\working_posture_video';
+% Choose video data directory
+file_dir=uigetdir(pwd, 'Choose Where You Dnowloaded the video Data (e.g., xx\working_posture_video\). ');
+% file_dir='\data\working_posture_video';
 
 % Demo file name: 'sub07_09_01.avi'.
 sub_id=7; task_id=9; task_iid=1;
@@ -77,7 +83,9 @@ vis_pose_37(marker_xyz);
 % Demo file name: 'sub07_09_01_box_trc.mat'.
 sub_id=7; task_id=9; task_iid=1;
 % create file path
-box_file_dir=fullfile('\data\box_trc_mat', ['sub', num_to_2char(sub_id)]);
+% Choose box marker data directory
+file_dir=uigetdir(pwd, 'Choose Where You Dnowloaded the Marker Data (e.g., xx\box_trc\). ');
+box_file_dir=fullfile(file_dir, ['sub', num_to_2char(sub_id)]);
 box_file_name=[['sub', num_to_2char(sub_id)],'_',...
    num_to_2char(task_id), '_',  num_to_2char(task_iid),...
    '_box_trc.mat'];
@@ -95,9 +103,12 @@ box_marker_xyz=box_marker_st{3}(:,2); % xyz for each marker
 %% load shelf and chair.trc file of box
 % note that the shelf and chair were fixed
 
+
+% Choose box marker data directory
+file_dir=uigetdir(pwd, 'Choose Where You Dnowloaded the Marker Data (e.g., xx\virtual_trc\). ');
 % create file path
-chair_file_path='\data\virtual_trc\chair_virtual_trc.mat';
-shelf_file_path='\data\virtual_trc\shelf_virtual_trc.mat';
+chair_file_path=fullfile(file_dir, '\chair_virtual_trc.mat');
+shelf_file_path=fullfile(file_dir, '\shelf_virtual_trc.mat');
 
 % load
 chair_marker_st=load(chair_file_path);
