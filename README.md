@@ -14,7 +14,7 @@
   1. Download the data. (Marker data/Videos were stored as .mat/.avi)
   2. Extract the data under folder '\data'. Note that the code used one sample from Sub07 for demo purpose.
   3. The following graph shows the **data structure of a single trial of marker data (.mat file).** You can also run though the file 'basic_functions.m' block by block for the details. For the data structure of txt file, please refer to the 'readme.txt' attached with the txt data.
-  ![data_structure](https://raw.githubusercontent.com/LLDavid/MOPED25/master/image/data_structure.png)
+  <img src="https://raw.githubusercontent.com/LLDavid/MOPED25/master/image/data_structure.png" width="500">
   4. **Important:** The video file is 30 Hz and the motion data is 60 Hz. Therefore, each video frame has two corresponding motion frames.
 ## GUI for easy access (New)
 * The GUI provides easy visualization of both marker data and video data. All code is intergrated in one script, so it has **zero** path and package independencies. (I can run it with MATLAB 2018b and 2019a. )
